@@ -1,0 +1,50 @@
+{
+  "Gene Summary": {
+    "Gene name": "rho",
+    "Gene length": "1809 bp",
+    "Identifier": "Rv1297",
+    "Location": "1453204 bp"
+  },
+  "Protein Summary": {
+    "Molecular mass": "65101.4 Da",
+    "Isoelectric point": "5.4216",
+    "Protein length": "602 amino acids"
+  },
+  "Structural Information": {
+    "PFAM": "P66028"
+  },
+  "Orthologues": [
+    {
+      "M. leprae": "ML1132",
+      "Link": "/genes/ML1132"
+    },
+    {
+      "M. marinum": "MMAR_4100",
+      "Link": "/genes/MMAR_4100"
+    },
+    {
+      "M. smegmatis": "MSMEG_4954",
+      "Link": "/genes/MSMEG_4954"
+    }
+  ],
+  "General Annotation": {
+    "Type": "CDS",
+    "Function": "Facilitates transcription termination by a mechanism that involves rho binding to the nascent RNA, activation of rho'S RNA-dependent ATPase activity, and release of the mRNA from the DNA template",
+    "Product": "Probable transcription termination factor Rho homolog",
+    "Comments": "Rv1297, (MTCY373.17), len: 602 aa. Probable rho, transcription termination factor homolog, highly similar to many e.g. RHO_MYCLE|P45835 Mycobacterium leprae (610 aa), FASTA scores: (81.5% identity in 612 aa overlap). Contains 1 RNA recognition motif (RRM). Nucleotide position 1453608 in the genome sequence has been corrected, T:C resulting in G135G.",
+    "Functional category": "Information pathways",
+    "Proteomics": "Identified by proteomics (see Rosenkrands et al., 2000). Identified in the membrane fraction of M. tuberculosis H37Rv using 1D-SDS-PAGE and uLC-MS/MS (See Gu et al., 2003). Identified in the cell wall and cell membrane fractions of M. tuberculosis H37Rv using 2DLC/MS (See Mawuenyega et al., 2005). Identified by mass spectrometry in Triton X-114 extracts of M. tuberculosis H37Rv (See Malen et al., 2010). Identified by mass spectrometry in the membrane protein fraction and whole cell lysates of M. tuberculosis H37Rv but not the culture filtrate (See de Souza et al., 2011).",
+    "Transcriptomics": "mRNA identified by microarray analysis and down-regulated after 96h of starvation (see Betts et al., 2002).",
+    "Mutant": "Essential gene for in vitro growth of H37Rv in a MtbYM rich medium, by Himar1 transposon mutagenesis (see Minato et al. 2019). Essential gene for in vitro growth of H37Rv, by analysis of saturated Himar1 transposon libraries (see DeJesus et al. 2017). Essential gene by Himar1 transposon mutagenesis in H37Rv strain (see Sassetti et al., 2003). Essential gene for in vitro growth of H37Rv, by Himar1 transposon mutagenesis (See Griffin et al., 2011).\nCheck for mutants available at TARGET website"
+  },
+  "Coordinates": {
+    "Type": "CDS",
+    "Start": "1453204",
+    "End": "1455012",
+    "Orientation": "+"
+  },
+  "Genomic Sequence": {},
+  "Protein Sequence": {
+    "Sequence": ">Mycobacterium tuberculosis H37Rv|Rv1297|rho\nVTDTDLITAGESTDGKPSDAAATDPPDLNADEPAGSLATMVLPELRALANRAGVKGTSGMRKNELIAAIEEIRRQANGAPAVDRSAQEHDKGDRPPSSEAPATQGEQTPTEQIDSQSQQVRPERRSATREAGPSGSGERAGTAADDTDNRQGGQQDAKTEERGTDAGGDQGGDQQASGGQQARGDEDGEARQGRRGRRFRDRRRRGERSGDGAEAELREDDVVQPVAGILDVLDNYAFVRTSGYLPGPHDVYVSMNMVRKNGMRRGDAVTGAVRVPKEGEQPNQRQKFNPLVRLDSINGGSVEDAKKRPEFGKLTPLYPNQRLRLETSTERLTTRVIDLIMPIGKGQRALIVSPPKAGKTTILQDIANAITRNNPECHLMVVLVDERPEEVTDMQRSVKGEVIASTFDRPPSDHTSVAELAIERAKRLVEQGKDVVVLLDSITRLGRAYNNASPASGRILSGGVDSTALYPPKRFLGAARNIEEGGSLTIIATAMVETGSTGDTVIFEEFKGTGNAELKLDRKIAERRVFPAVDVNPSGTRKDELLLSPDEFAIVHKLRRVLSGLDSHQAIDLLMSQLRKTKNNYEFLVQVSKTTPGSMDSD"
+  }
+}
