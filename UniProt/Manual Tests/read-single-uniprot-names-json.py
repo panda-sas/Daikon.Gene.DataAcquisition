@@ -12,7 +12,7 @@ def extract_protein_name(json_data):
 def main():
     # Assume 'uniprot_data' is the JSON data obtained from the UniProt API
     # You can replace this with the actual JSON data you receive from the API call
-    with open('/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/UniProt/Manual Tests/single-uniprot-id.json', 'r') as json_file:
+    with open('/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/UniProt/JSON Output/uniprot_data.json', 'r') as json_file:
         uniprot_data = json.load(json_file)
 
     # Extract the protein name
