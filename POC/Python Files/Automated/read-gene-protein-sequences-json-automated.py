@@ -61,7 +61,7 @@ for gene_id, gene_info in gene_sequences.items():
     })
 
 # Save the combined output to a JSON file
-output_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/Downloaded Files-Input/Automated_gene_protein_sequences_with_length.json'
+output_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/Downloaded Files-Input/Automated_gene_protein_sequences_with_length.json'
 with open(output_file_path, 'w') as output_file:
     json.dump(combined_output, output_file, indent=2)
 

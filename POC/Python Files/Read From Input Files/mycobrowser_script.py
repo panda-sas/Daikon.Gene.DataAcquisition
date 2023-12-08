@@ -115,7 +115,7 @@ def main():
     gene_id = "Rv1297"
     gene_data = fetch_gene_data(gene_id)
     if gene_data:
-        output_file = "/Users/saswatipanda/workspace/fun-trials/Card/JSON Files-Output/manual-gene_data_output.json"
+        output_file = "/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/Downloaded Files-Input/JSON Files-Output/manual-gene_data_output.json"
         write_to_json(gene_data, output_file)
         print(f"Data for gene ID {gene_id} has been written to {output_file}.")
 

@@ -47,8 +47,8 @@ def write_to_file(json_array, output_file_path):
     with open(output_file_path, "w") as output_file:
         json.dump(json_array, output_file, indent=2)
 
-fasta_file_path = "/Users/saswatipanda/workspace/fun-trials/Card/Fasta Files/Mycobacterium_tuberculosis_H37Rv_genes_v4.fasta"  # Replace with the path to your FASTA file
-output_file_path = "/Users/saswatipanda/workspace/fun-trials/Card/JSON Files-Output/individual-genome-sequence.json"     # Replace with the desired output file path
+fasta_file_path = "/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/Fasta Files/Mycobacterium_tuberculosis_H37Rv_genes_v4.fasta"  # Replace with the path to your FASTA file
+output_file_path = "/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/Downloaded Files-Input/JSON Files-Output/individual-genome-sequence.json"     # Replace with the desired output file path
 
 sequences = parse_fasta(fasta_file_path)
 json_array = convert_to_json(sequences)

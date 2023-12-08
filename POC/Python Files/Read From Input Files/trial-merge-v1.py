@@ -30,11 +30,8 @@ def read_fasta(file_path):
             sequences[identifier] = {"sequence": sequence, "length": protein_length}
     return sequences
 
-def calculate_gene_length(sequence):
-    return len(sequence)
-
-gene_sequences = read_fasta('/Users/saswatipanda/workspace/fun-trials/Card/Fasta Files-Input/Mycobacterium_tuberculosis_H37Rv_genes_v4.fasta')
-protein_sequences = read_fasta('/Users/saswatipanda/workspace/fun-trials/Card/Fasta Files-Input/Mycobacterium_tuberculosis_H37Rv_proteins_v4.fasta')
+gene_sequences = read_fasta('/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/Fasta Files-Input/Mycobacterium_tuberculosis_H37Rv_genes_v4.fasta')
+protein_sequences = read_fasta('/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/Fasta Files-Input/Mycobacterium_tuberculosis_H37Rv_proteins_v4.fasta')
 
 combined_output = []
 
@@ -44,12 +41,11 @@ for gene_id, gene_info in gene_sequences.items():
         "Identifier": gene_id,
         "Genome Sequence": gene_info["sequence"],
         "Protein Sequence": protein_info["sequence"],
-        "Gene Length": calculate_gene_length(gene_info["sequence"]),
         "Protein Length": protein_info["length"]
     })
 
 # Save the combined output to a JSON file
-output_file_path = '/Users/saswatipanda/workspace/fun-trials/Card/JSON Files-Output/test-gene-and-protein-sequences-v2.json'
+output_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/Downloaded Files-Input/JSON Files-Output/test-gene-and-protein-sequences-v1.json'
 with open(output_file_path, 'w') as output_file:
     json.dump(combined_output, output_file, indent=2)
 

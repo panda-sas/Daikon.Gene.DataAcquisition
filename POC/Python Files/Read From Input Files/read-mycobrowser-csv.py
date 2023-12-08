@@ -51,7 +51,7 @@ def extract_gene_info(entry):
 
 def main():
     csv_file_path = '/Users/saswatipanda/workspace/fun-trials/Mycobacterium_tuberculosis_H37Rv_txt_v4.txt'
-    output_file_path = '/Users/saswatipanda/workspace/fun-trials/Card/JSON Files-Output/gene_info_output.json'
+    output_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/Downloaded Files-Input/JSON Files-Output/gene_info_output.json'
 
     gene_data = read_csv(csv_file_path)
     result = []

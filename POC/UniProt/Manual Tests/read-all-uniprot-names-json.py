@@ -17,8 +17,8 @@ def extract_protein_names(json_data):
     return protein_names
 
 def main():
-    input_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/UniProt/JSON Output/uniprot_data.json'
-    output_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/UniProt/JSON Output/all_protein_names.json'
+    input_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/UniProt/JSON Output/uniprot_data.json'
+    output_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/UniProt/JSON Output/all_protein_names.json'
 
     try:
         with open(input_file_path, 'r') as file:

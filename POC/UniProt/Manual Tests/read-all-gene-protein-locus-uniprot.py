@@ -44,8 +44,9 @@ def extract_gene_data(json_data):
     return genes_data
 
 def main():
-    input_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/UniProt/JSON Output/uniprot_data.json'
-    output_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/UniProt/JSON Output/all_gene_protein_locus.json'
+    input_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/UniProt/JSON Output/uniprot_data.json'
+    output_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/UniProt/JSON Output/all_gene_protein_locus.json'
+ 
 
     try:
         with open(input_file_path, 'r') as file:

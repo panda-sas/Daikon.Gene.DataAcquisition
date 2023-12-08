@@ -17,7 +17,7 @@ def read_tab_separated_file(file_path):
 def main():
     # Replace this URL with the correct one
     file_url = 'https://mycobrowser.epfl.ch/releases/4/get_file?dir=txt&file=Mycobacterium_tuberculosis_H37Rv.txt'
-    file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/Downloaded Files-Input/Mycobacterium_tuberculosis_H37Rv.txt'
+    file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/Downloaded Files-Input/Mycobacterium_tuberculosis_H37Rv.txt'
 
     download_file(file_url, file_path)
     

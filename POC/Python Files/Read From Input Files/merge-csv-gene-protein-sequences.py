@@ -88,10 +88,10 @@ def calculate_protein_length(header):
 
 
 def main():
-    csv_file_path = '/Users/saswatipanda/workspace/fun-trials/Card/Fasta Files-Input/Mycobacterium_tuberculosis_H37Rv_txt_v4.txt'
-    fasta_gene_file_path = '/Users/saswatipanda/workspace/fun-trials/Card/Fasta Files-Input/Mycobacterium_tuberculosis_H37Rv_genes_v4.fasta'
-    fasta_protein_file_path = '/Users/saswatipanda/workspace/fun-trials/Card/Fasta Files-Input/Mycobacterium_tuberculosis_H37Rv_proteins_v4.fasta'
-    output_file_path = '/Users/saswatipanda/workspace/fun-trials/Card/JSON Files-Output/all_combined_output.json'
+    csv_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/Fasta Files-Input/Mycobacterium_tuberculosis_H37Rv_txt_v4.txt'
+    fasta_gene_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/Fasta Files-Input/Mycobacterium_tuberculosis_H37Rv_genes_v4.fasta'
+    fasta_protein_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/Fasta Files-Input/Mycobacterium_tuberculosis_H37Rv_proteins_v4.fasta'
+    output_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/Downloaded Files-Input/JSON Files-Output/all_combined_output.json'
 
     gene_data = read_csv(csv_file_path)
     gene_sequences = read_fasta(fasta_gene_file_path)

@@ -25,7 +25,7 @@ def read_fasta_file(file_path):
     return sequences
 
 # Example usage
-fasta_file_path = '/Users/saswatipanda/workspace/fun-trials/Card/Fasta Files-Input/Mycobacterium_tuberculosis_H37Rv_proteins_v4.fasta'
+fasta_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/Fasta Files-Input/Mycobacterium_tuberculosis_H37Rv_proteins_v4.fasta'
 protein_sequences = read_fasta_file(fasta_file_path)
 
 # Convert to JSON format
@@ -35,7 +35,7 @@ json_output = [{"Identifier": identifier, "Protein Sequence": sequence} for iden
 print(json.dumps(json_output, indent=2))
 
 
-output_file_path = '/Users/saswatipanda/workspace/fun-trials/Card/JSON Files-Output/protein-sequences.json'
+output_file_path = '/Users/saswatipanda/workspace/Daikon.Gene.DataAcquisition/POC/Downloaded Files-Input/JSON Files-Output/protein-sequences.json'
 with open(output_file_path, 'w') as json_file:
     json.dump(json_output, json_file, indent=2)
 
