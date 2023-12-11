@@ -44,12 +44,18 @@ def extract_gene_data(json_data):
                         catalytic_activities.append(activity_name)
 
             # Gene Ontology
-
             gene_ontology = {
                 "Gene Ontology": {
                     "Cellular Component": [],
                     "Molecular Function": [],
                     "Biological Process": []
+                }
+            }
+
+            # AlphaFold information
+            alpha_fold_info = {
+                "AlphaFoldDB": {
+                    "id": None
                 }
             }
 
@@ -79,6 +85,8 @@ def extract_gene_data(json_data):
                             elif go_term_value.startswith("C:"):
                                 gene_ontology["Gene Ontology"]["Cellular Component"].append(go_term_stripped_value)
 
+                elif cross_reference.get('database') == 'AlphaFoldDB':  # Check for "database": "AlphaFoldDB"
+                    alpha_fold_info["AlphaFoldDB"]["id"] = cross_reference.get('id', None)
 
             if locus_value or gene_name or protein_name:
                 gene_data = {
@@ -87,7 +95,8 @@ def extract_gene_data(json_data):
                         "Gene name": gene_name,
                         "Protein name": protein_name,
                         "Catalytic Activity": catalytic_activities,
-                        **gene_ontology
+                        **gene_ontology,
+                        **alpha_fold_info
                     }
                 }
                 genes_data.append(gene_data)
