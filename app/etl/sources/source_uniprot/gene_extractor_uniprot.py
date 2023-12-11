@@ -33,12 +33,23 @@ def extract_gene_data(json_data):
                     if protein_name:
                         break
 
+            catalytic_activities = []
+            comments = result.get('comments', [])
+            for comment in comments:
+                comment_type = comment.get('commentType', '').lower()
+                if comment_type == 'catalytic activity':
+                    reaction = comment.get('reaction', {})
+                    activity_name = reaction.get('name', '')
+                    if activity_name:
+                        catalytic_activities.append(activity_name)
+
             if locus_value or gene_name or protein_name:
                 gene_data = {
                     "Genes": {
                         "Locus": locus_value,
                         "Gene name": gene_name,
-                        "Protein name": protein_name
+                        "Protein name": protein_name,
+                        "Catalytic Activity": catalytic_activities
                     }
                 }
                 genes_data.append(gene_data)
