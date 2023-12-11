@@ -1,6 +1,6 @@
 from etl.sources.source_mycobrowser.data_loader_from_url import read_csv_from_url, read_fasta_from_url
 from etl.sources.source_mycobrowser.data_combiner import combine_data
-from utils.file_operations.write_output import write_output
+from app.utils.file_operations.write_output_mycobrowser import write_output
 
 
 def main():
