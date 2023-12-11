@@ -1,6 +1,4 @@
-# Module to extract the genes and proteins data from Uniprot
-
-import json
+# Module to extract the genes and proteins properties from Uniprot
 
 def extract_gene_data(json_data):
     genes_data = []
@@ -65,6 +63,11 @@ def extract_gene_data(json_data):
                         if prop.get('key') == 'GoTerm':
                             go_term_value = prop.get('value', '')
 
+
+                            # If value starts with P: then Gene ontology - Biological Process.
+                            # If value starts with F: then Gene ontology - Molecular Function.
+                            # If value starts with C: then Gene ontology - Cellular Component.
+                            
                             # Remove prefixes "C:", "F:", and "P:" from the values
                             go_term_stripped_value = go_term_value.lstrip("C:").lstrip("F:").lstrip("P:")
 
@@ -90,12 +93,3 @@ def extract_gene_data(json_data):
                 genes_data.append(gene_data)
 
     return genes_data
-
-
-def save_raw_data(json_data, output_file_path):
-    try:
-        with open(output_file_path, 'w') as output_file:
-            json.dump(json_data, output_file, indent=2)
-        print(f"Raw data saved to {output_file_path}")
-    except Exception as e:
-        print(f"Error saving raw data to {output_file_path}: {e}")

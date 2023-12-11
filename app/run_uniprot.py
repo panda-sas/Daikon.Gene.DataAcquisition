@@ -3,7 +3,7 @@
 from etl.sources.source_uniprot.gene_extractor_uniprot import extract_gene_data
 from etl.sources.source_uniprot.data_fetcher_uniprot import fetch_data
 from utils.file_operations.write_output_uniprot import save_to_json
-from etl.sources.source_uniprot.gene_extractor_uniprot import save_raw_data
+from etl.sources.source_uniprot.raw_data_saver import save_raw_data
 
 def main():
     uniprot_url = 'https://rest.uniprot.org/uniprotkb/stream?format=json&query=%28H37Rv%29'
