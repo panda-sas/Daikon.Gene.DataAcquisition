@@ -33,6 +33,8 @@ def extract_gene_data(json_data):
                     if protein_name:
                         break
 
+            # Catalytic activity
+
             catalytic_activities = []
             comments = result.get('comments', [])
             for comment in comments:
@@ -43,13 +45,46 @@ def extract_gene_data(json_data):
                     if activity_name:
                         catalytic_activities.append(activity_name)
 
+            # Gene Ontology
+
+            gene_ontology = {
+                "Gene Ontology": {
+                    "Cellular Component": [],
+                    "Molecular Function": [],
+                    "Biological Process": []
+                }
+            }
+
+            uniProtKB_cross_references = result.get('uniProtKBCrossReferences', [])
+            for cross_reference in uniProtKB_cross_references:
+                if cross_reference.get('database') == 'GO':  # Check for "database": "GO"
+                    # go_id = cross_reference.get('id', '')
+                    go_properties = cross_reference.get('properties', [])
+
+                    for prop in go_properties:
+                        if prop.get('key') == 'GoTerm':
+                            go_term_value = prop.get('value', '')
+
+                            # Remove prefixes "C:", "F:", and "P:" from the values
+                            go_term_stripped_value = go_term_value.lstrip("C:").lstrip("F:").lstrip("P:")
+
+                            # Determine Gene Ontology category based on properties
+                            if go_term_value.startswith("P:"):
+                                gene_ontology["Gene Ontology"]["Biological Process"].append(go_term_stripped_value)
+                            elif go_term_value.startswith("F:"):
+                                gene_ontology["Gene Ontology"]["Molecular Function"].append(go_term_stripped_value)
+                            elif go_term_value.startswith("C:"):
+                                gene_ontology["Gene Ontology"]["Cellular Component"].append(go_term_stripped_value)
+
+
             if locus_value or gene_name or protein_name:
                 gene_data = {
                     "Genes": {
                         "Locus": locus_value,
                         "Gene name": gene_name,
                         "Protein name": protein_name,
-                        "Catalytic Activity": catalytic_activities
+                        "Catalytic Activity": catalytic_activities,
+                        **gene_ontology
                     }
                 }
                 genes_data.append(gene_data)
