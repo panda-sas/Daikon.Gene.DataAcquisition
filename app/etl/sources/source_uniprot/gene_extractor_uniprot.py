@@ -58,6 +58,22 @@ def extract_gene_data(json_data):
                 }
             }
 
+            # Function information
+            function_info = {
+                "Function": None
+            }
+
+            comments = result.get('comments', [])
+            for comment in comments:
+                comment_type = comment.get('commentType', '').lower()
+                if comment_type == 'function':
+                    texts = comment.get('texts', [])
+                    if texts:
+                        for text in texts:
+                            value = text.get('value', '')
+                            function_info["Function"] = value
+
+
             uniProtKB_cross_references = result.get('uniProtKBCrossReferences', [])
             for cross_reference in uniProtKB_cross_references:
                 if cross_reference.get('database') == 'GO':  # Check for "database": "GO"
@@ -95,7 +111,9 @@ def extract_gene_data(json_data):
                         "Protein name": protein_name,
                         "Catalytic Activity": catalytic_activities,
                         **gene_ontology,
-                        **alpha_fold_info
+                        **alpha_fold_info,
+                        **function_info
+                    
                     }
                 }
                 genes_data.append(gene_data)
