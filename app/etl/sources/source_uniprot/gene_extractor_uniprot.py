@@ -32,7 +32,6 @@ def extract_gene_data(json_data):
                         break
 
             # Catalytic activity
-
             catalytic_activities = []
             comments = result.get('comments', [])
             for comment in comments:
