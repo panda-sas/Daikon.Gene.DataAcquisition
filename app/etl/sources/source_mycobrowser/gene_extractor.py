@@ -1,3 +1,4 @@
+# Gene data extraction and gene length calculation module
 
 def calculate_gene_length(sequence):
     return len(sequence)

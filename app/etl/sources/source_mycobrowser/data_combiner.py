@@ -1,3 +1,5 @@
+# Module for combining gene length, protein length, and other information
+
 from etl.sources.source_mycobrowser.gene_extractor import extract_gene_info, calculate_gene_length
 
 def combine_data(gene_data, gene_sequences, protein_sequences):
