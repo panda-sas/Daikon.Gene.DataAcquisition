@@ -146,7 +146,7 @@ def extract_gene_data(json_data):
                 for single_locus_value in locus_values:
                     gene_data = {
                         "uniProtKB": uniProtId,
-                        "locus": single_locus_value,
+                        "accessionNumber": single_locus_value,
                         "geneName": gene_name,
                         "proteinNameExpanded": protein_name,
                         "catalyticActivities": catalytic_activities,
