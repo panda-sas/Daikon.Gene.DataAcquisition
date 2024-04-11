@@ -48,18 +48,19 @@ def extract_gene_data(json_data):
                     if activity_name:
                         catalytic_activities.append(
                             {
-                                "Name": activity_name,
-                                "EC number": activity_ec_number,
-                                "Publications": publications,
+                                "name": activity_name,
+                                "ecNumber": activity_ec_number,
+                                "publications": publications,
+                                "source": "UniProt",
                             }
                         )
 
             # Gene Ontology
             gene_ontology = {
-                "Gene Ontology": {
-                    "Cellular Component": [],
-                    "Molecular Function": [],
-                    "Biological Process": [],
+                "geneOntology": {
+                    "cellularComponent": [],
+                    "molecularFunction": [],
+                    "biologicalProcess": [],
                 }
             }
 
@@ -79,7 +80,7 @@ def extract_gene_data(json_data):
                             value = text.get("value", "")
                             publication = text.get("evidences", [])
                             function_info["Function"].append(
-                                {"Name": value, "Publications": publication}
+                                {"Name": value, "Publications": publication , "source": "UniProt"}
                             )
 
             uniProtKB_cross_references = result.get("uniProtKBCrossReferences", [])
@@ -107,30 +108,33 @@ def extract_gene_data(json_data):
 
                             # Determine Gene Ontology category based on properties
                             if go_term_value.startswith("P:"):
-                                gene_ontology["Gene Ontology"][
-                                    "Biological Process"
+                                gene_ontology["geneOntology"][
+                                    "biologicalProcess"
                                 ].append(
                                     {
-                                        "Name": go_term_stripped_value,
-                                        "Evidences": go_evidence,
+                                        "name": go_term_stripped_value,
+                                        "publications": go_evidence,
+                                        "source": "UniProt",
                                     }
                                 )
                             elif go_term_value.startswith("F:"):
-                                gene_ontology["Gene Ontology"][
-                                    "Molecular Function"
+                                gene_ontology["geneOntology"][
+                                    "molecularFunction"
                                 ].append(
                                     {
-                                        "Name": go_term_stripped_value,
-                                        "Evidences": go_evidence,
+                                        "name": go_term_stripped_value,
+                                        "publications": go_evidence,
+                                        "source": "UniProt",
                                     }
                                 )
                             elif go_term_value.startswith("C:"):
-                                gene_ontology["Gene Ontology"][
-                                    "Cellular Component"
+                                gene_ontology["geneOntology"][
+                                    "cellularComponent"
                                 ].append(
                                     {
-                                        "Name": go_term_stripped_value,
-                                        "Evidences": go_evidence,
+                                        "name": go_term_stripped_value,
+                                        "publications": go_evidence,
+                                        "source": "UniProt",
                                     }
                                 )
 
@@ -146,14 +150,15 @@ def extract_gene_data(json_data):
                 locus_values = locus_value.split('/') if locus_value else [None]
                 for single_locus_value in locus_values:
                     gene_data = {
-                        "UniProtKB": uniProtId,
-                        "Locus": single_locus_value,
-                        "Gene name": gene_name,
-                        "Protein name": protein_name,
-                        "Catalytic Activity": catalytic_activities,
+                        "uniProtKB": uniProtId,
+                        "locus": single_locus_value,
+                        "geneName": gene_name,
+                        "proteinNameExpanded": protein_name,
+                        "catalyticActivities": catalytic_activities,
                         **gene_ontology,
                         **alpha_fold_info,
                         **function_info,
+                        "source": "UniProt",
                     }
                     genes_data.append(gene_data)
                 if len(locus_values) > 1:
