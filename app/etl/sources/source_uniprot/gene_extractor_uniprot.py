@@ -1,4 +1,5 @@
 # Module to extract the genes and proteins properties from Uniprot
+import logging
 
 
 def extract_gene_data(json_data):
@@ -141,16 +142,21 @@ def extract_gene_data(json_data):
                     )
 
             if locus_value or gene_name or protein_name:
-                gene_data = {
-                    "UniProtKB": uniProtId,
-                    "Locus": locus_value,
-                    "Gene name": gene_name,
-                    "Protein name": protein_name,
-                    "Catalytic Activity": catalytic_activities,
-                    **gene_ontology,
-                    **alpha_fold_info,
-                    **function_info,
-                }
-                genes_data.append(gene_data)
-
+                # Some locus values are separated by '/' if they have same value in uniProt, breaking it and duplicating the gene data
+                locus_values = locus_value.split('/') if locus_value else [None]
+                for single_locus_value in locus_values:
+                    gene_data = {
+                        "UniProtKB": uniProtId,
+                        "Locus": single_locus_value,
+                        "Gene name": gene_name,
+                        "Protein name": protein_name,
+                        "Catalytic Activity": catalytic_activities,
+                        **gene_ontology,
+                        **alpha_fold_info,
+                        **function_info,
+                    }
+                    genes_data.append(gene_data)
+                if len(locus_values) > 1:
+                    logging.info(f"Created separate gene data entries for split locus value '{single_locus_value}' from '{locus_value}'.")
+                
     return genes_data
