@@ -1,6 +1,6 @@
 # Module to extract the genes and proteins properties from Uniprot
 import logging
-
+from utils.data_formatters.publication_formatter import format_publication
 
 def extract_gene_data(json_data):
     genes_data = []
@@ -48,27 +48,25 @@ def extract_gene_data(json_data):
                     if activity_name:
                         catalytic_activities.append(
                             {
-                                "name": activity_name,
-                                "ecNumber": activity_ec_number,
-                                "publications": publications,
+                                "value": activity_name,
+                                "provenance": activity_ec_number,
+                                "publications": format_publication(publications),
                                 "source": "UniProt",
                             }
                         )
 
             # Gene Ontology
             gene_ontology = {
-                "geneOntology": {
-                    "cellularComponent": [],
-                    "molecularFunction": [],
-                    "biologicalProcess": [],
-                }
+                    "geneOntologyCellularComponent": [],
+                    "geneOntologyMolecularFunction": [],
+                    "geneOntologyBiologicalProcess": [],
             }
 
             # AlphaFold information
-            alpha_fold_info = {"AlphaFoldDB": {"id": None}}
+            alpha_fold_info = {"alphaFoldId": None}
 
             # Function information
-            function_info = {"Function": []}
+            function_info = {"function": []}
 
             comments = result.get("comments", [])
             for comment in comments:
@@ -79,8 +77,8 @@ def extract_gene_data(json_data):
                         for text in texts:
                             value = text.get("value", "")
                             publication = text.get("evidences", [])
-                            function_info["Function"].append(
-                                {"Name": value, "Publications": publication , "source": "UniProt"}
+                            function_info["function"].append(
+                                {"value": value, "publications": format_publication(publications) , "source": "UniProt"}
                             )
 
             uniProtKB_cross_references = result.get("uniProtKBCrossReferences", [])
@@ -90,7 +88,7 @@ def extract_gene_data(json_data):
                 ):  # Check for "database": "GO"
                     # go_id = cross_reference.get('id', '')
                     go_properties = cross_reference.get("properties", [])
-                    go_evidence = cross_reference.get("evidences", [])
+                    publications = cross_reference.get("evidences", [])
 
                     for prop in go_properties:
 
@@ -108,32 +106,29 @@ def extract_gene_data(json_data):
 
                             # Determine Gene Ontology category based on properties
                             if go_term_value.startswith("P:"):
-                                gene_ontology["geneOntology"][
-                                    "biologicalProcess"
+                                gene_ontology["geneOntologyBiologicalProcess"
                                 ].append(
                                     {
-                                        "name": go_term_stripped_value,
-                                        "publications": go_evidence,
+                                        "value": go_term_stripped_value,
+                                        "publications": format_publication(publications),
                                         "source": "UniProt",
                                     }
                                 )
                             elif go_term_value.startswith("F:"):
-                                gene_ontology["geneOntology"][
-                                    "molecularFunction"
+                                gene_ontology["geneOntologyMolecularFunction"
                                 ].append(
                                     {
-                                        "name": go_term_stripped_value,
-                                        "publications": go_evidence,
+                                        "value": go_term_stripped_value,
+                                        "publications": format_publication(publications),
                                         "source": "UniProt",
                                     }
                                 )
                             elif go_term_value.startswith("C:"):
-                                gene_ontology["geneOntology"][
-                                    "cellularComponent"
+                                gene_ontology["geneOntologyCellularComponent"
                                 ].append(
                                     {
-                                        "name": go_term_stripped_value,
-                                        "publications": go_evidence,
+                                        "value": go_term_stripped_value,
+                                        "publications": format_publication(publications),
                                         "source": "UniProt",
                                     }
                                 )
@@ -141,7 +136,7 @@ def extract_gene_data(json_data):
                 elif (
                     cross_reference.get("database") == "AlphaFoldDB"
                 ):  # Check for "database": "AlphaFoldDB"
-                    alpha_fold_info["AlphaFoldDB"]["id"] = cross_reference.get(
+                    alpha_fold_info["alphaFoldId"] = cross_reference.get(
                         "id", None
                     )
 
