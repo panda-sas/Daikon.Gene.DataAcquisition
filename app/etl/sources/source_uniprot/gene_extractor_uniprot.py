@@ -39,8 +39,15 @@ def extract_gene_data(json_data):
                 if comment_type == 'catalytic activity':
                     reaction = comment.get('reaction', {})
                     activity_name = reaction.get('name', '')
+                    activity_ec_number = reaction.get('ecNumber', '')
+                    publications = reaction.get('evidences', [])
                     if activity_name:
-                        catalytic_activities.append(activity_name)
+                        catalytic_activities.append({
+                            "Name": activity_name,
+                            "EC number": activity_ec_number,
+                            "Publications": publications
+                        }
+                        )
 
             # Gene Ontology
             gene_ontology = {
