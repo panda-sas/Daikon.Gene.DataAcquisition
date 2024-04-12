@@ -63,7 +63,7 @@ def extract_gene_data(json_data):
                         )
 
             # AlphaFold information
-            alpha_fold_info = {"alphaFoldId": None}
+            alpha_fold_info = ""
 
             # Function information
             comments = result.get("comments", [])
@@ -154,21 +154,24 @@ def extract_gene_data(json_data):
                 elif (
                     cross_reference.get("database") == "AlphaFoldDB"
                 ):  # Check for "database": "AlphaFoldDB"
-                    alpha_fold_info["alphaFoldId"] = cross_reference.get("id", None)
+                    alpha_fold_info = cross_reference.get("id", None)
 
-            if locus_value or gene_name or protein_name:
+            if locus_value:
                 # Some locus values are separated by '/' if they have same value in uniProt, breaking it and duplicating the gene data
                 locus_values = locus_value.split("/") if locus_value else [None]
                 for single_locus_value in locus_values:
                     gene_data = {
                         "uniProtKB": uniProtId,
+                        "strainName": "H37Rv",
                         "accessionNumber": single_locus_value,
-                        "geneName": gene_name,
                         "proteinNameExpanded": protein_name,
-                        "alphaFoldInfo": alpha_fold_info,  # Assign the whole dictionary
+                        "alphaFoldId": alpha_fold_info,  # Assign the whole dictionary
                         "expansionProps": expansion_props,  # Assign the whole list
                         "source": "UniProt",
                     }
+                    if gene_name and gene_name.strip():
+                        gene_data["name"] = gene_name
+                        
                     genes_data.append(gene_data)
                 if len(locus_values) > 1:
                     logging.info(

@@ -8,7 +8,9 @@ def calculate_gene_length(sequence):
 def extract_gene_info(entry):
     gene_info = {
         "accessionNumber": entry["Locus"],
-        "geneName": entry["Name"],
+        "name": entry["Name"],
+        "strainName": "H37Rv",
+        "source": "Mycobrowser",
         "expansionProps": [
             {
                 "expansionType": "function",
@@ -22,23 +24,23 @@ def extract_gene_info(entry):
         },
         "comments": {"value": entry["Comments"], "source": "Mycobrowser"},
         "coordinates": {
-            "start": entry["Start"],
-            "stop": entry["Stop"],
-            "orientation": entry["Strand"],
+            "item1": entry["Start"],
+            "item2": entry["Stop"],
+            "item3": entry["Strand"],
         },
         "structuralInformation": {
             "pfam": entry["PFAM"],
         },
-        "orthologues": {
-            "M. marinum": entry["Orthologues M. marinum"],
-            "M. smegmatis": entry["Orthologues M. smegmatis"],
-            "M. leprae": entry["Orthologues M. leprae"],
-            "M. bovis": entry["Orthologues M. bovis"],
-            "M. lepromatosis": entry["Orthologues M. lepromatosis"],
-            "M. abscessus": entry["Orthologues M. abscessus"],
-            "M. tuberculosis": entry["Orthologues M. tuberculosis"],
-            "M. haemophilum": entry["Orthologues M. haemophilum"],
-            "M. orygis": entry["Orthologues M. orygis"],
-        },
+        "orthologues": [
+            {"item1": "M. marinum", "item2": entry["Orthologues M. marinum"]},
+            {"item1": "M. smegmatis", "item2": entry["Orthologues M. smegmatis"]},
+            {"item1": "M. leprae", "item2": entry["Orthologues M. leprae"]},
+            {"item1": "M. bovis", "item2": entry["Orthologues M. bovis"]},
+            {"item1": "M. lepromatosis", "item2": entry["Orthologues M. lepromatosis"]},
+            {"item1": "M. abscessus", "item2": entry["Orthologues M. abscessus"]},
+            {"item1": "M. tuberculosis", "item2": entry["Orthologues M. tuberculosis"]},
+            {"item1": "M. haemophilum", "item2": entry["Orthologues M. haemophilum"]},
+            {"item1": "M. orygis", "item2": entry["Orthologues M. orygis"]},
+        ],
     }
     return gene_info

@@ -13,10 +13,10 @@ def combine_data(gene_data, gene_sequences, protein_sequences):
 
         combined_info = {
             **gene_info,
-            "genomeSequence": gene_sequence_info["sequence"],
+            "geneSequence": gene_sequence_info["sequence"],
             "proteinSequence": protein_info["sequence"],
-            "geneLength": calculate_gene_length(gene_sequence_info["sequence"]),
-            "proteinLength": protein_info["length"]
+            "geneLength": str(calculate_gene_length(gene_sequence_info["sequence"])),
+            "proteinLength": str(protein_info["length"])
         }
 
         combined_output.append(combined_info)
