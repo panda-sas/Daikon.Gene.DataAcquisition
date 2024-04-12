@@ -9,10 +9,17 @@ def extract_gene_info(entry):
     gene_info = {
         "accessionNumber": entry["Locus"],
         "geneName": entry["Name"],
-        "type": entry["Feature"],
-        "function": [{"value": entry["Function"], "source": "Mycobrowser"}],
+        "expansionProps": [
+            {
+                "expansionType": "function",
+                "expansionValue": {"value": entry["Function"], "source": "Mycobrowser"},
+            }
+        ],
         "product": {"value": entry["Product"], "source": "Mycobrowser"},
-        "functionalCategory": {"value": entry["Functional_Category"], "source": "Mycobrowser"},
+        "functionalCategory": {
+            "value": entry["Functional_Category"],
+            "source": "Mycobrowser",
+        },
         "comments": {"value": entry["Comments"], "source": "Mycobrowser"},
         "coordinates": {
             "start": entry["Start"],
