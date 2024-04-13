@@ -1,5 +1,8 @@
 # Ignore the data folder
 data/
+
+*.log
+*.log.*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

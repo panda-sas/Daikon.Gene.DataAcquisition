@@ -7,10 +7,10 @@ import logging
 logging.basicConfig(filename='post_errors.log', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # URL to send POST requests to
-url = 'http://localhost:8001/api/v2/gene-batch/import-one'
+url = 'http://localhost:8001/api/v2/gene'
 
 # Path to the JSON file
-#file_path = '../data/processed/all_genes_uniprot.json'
+
 file_path = '../data/processed/all_genes_merged.json'
 
 
