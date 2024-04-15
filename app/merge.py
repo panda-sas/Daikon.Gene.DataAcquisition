@@ -1,19 +1,29 @@
 import json
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def read_json(file_path):
     """Read a JSON file and return the data."""
-    with open(file_path, 'r') as file:
-        return json.load(file)
+    try:
+        with open(file_path, 'r') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        logging.error(f"File not found: {file_path}")
+        raise
+    except json.JSONDecodeError:
+        logging.error(f"Error decoding JSON from the file: {file_path}")
+        raise
 
 def merge_lists(list1, list2):
     """Merge two lists of dictionaries, combining based on shared keys."""
     combined = list1.copy()
     existing_keys = {item['expansionType']: item for item in combined}
-    
+
     for item2 in list2:
         key = item2['expansionType']
         if key in existing_keys:
-            # Merge dictionaries for the same expansionType
             combined_value = existing_keys[key]
             combined_value['expansionValue'] = merge_dicts(combined_value['expansionValue'], item2['expansionValue'])
         else:
@@ -41,7 +51,6 @@ def merge_json_data(file_path1, file_path2):
     data2 = read_json(file_path2)
 
     merged_data = {}
-    # Create a mapping from accessionNumber to data
     for item in data1:
         merged_data[item['accessionNumber']] = item
 
@@ -52,20 +61,27 @@ def merge_json_data(file_path1, file_path2):
         else:
             merged_data[accession_no] = item
 
-    # Convert the merged dictionary back to list format
-    merged_list = list(merged_data.values())
-    return merged_list
+    return list(merged_data.values())
 
 def write_json(data, file_path):
     """Write data to a JSON file."""
-    with open(file_path, 'w') as file:
-        json.dump(data, file, indent=4)
+    try:
+        with open(file_path, 'w') as file:
+            json.dump(data, file, indent=4)
+    except IOError:
+        logging.error(f"Failed to write to file: {file_path}")
+        raise
 
 # Define file paths
 file_path1 = '../data/processed/all_genes_uniprot.json'
 file_path2 = '../data/processed/all_genes_mycobrowser.json'
 output_file_path = '../data/processed/all_genes_merged.json'
 
-# Merge data and write to a new file
-merged_data = merge_json_data(file_path1, file_path2)
-write_json(merged_data, output_file_path)
+try:
+    # Merge data and write to a new file
+    logging.info("Starting to merge JSON files.")
+    merged_data = merge_json_data(file_path1, file_path2)
+    write_json(merged_data, output_file_path)
+    logging.info("JSON files merged and written successfully.")
+except Exception as e:
+    logging.error(f"An error occurred: {e}")
