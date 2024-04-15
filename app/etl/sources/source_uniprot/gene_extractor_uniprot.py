@@ -91,9 +91,10 @@ def extract_gene_data(json_data):
                 if (
                     cross_reference.get("database") == "GO"
                 ):  # Check for "database": "GO"
-                    # go_id = cross_reference.get('id', '')
+                    go_id = cross_reference.get('id', '')
                     go_properties = cross_reference.get("properties", [])
                     publications = cross_reference.get("evidences", [])
+                    
 
                     for prop in go_properties:
 
@@ -119,7 +120,7 @@ def extract_gene_data(json_data):
                                             "publications": format_publication(
                                                 publications
                                             ),
-                                            "source": "UniProt",
+                                            "source": go_id,
                                         },
                                     }
                                 )
@@ -133,7 +134,7 @@ def extract_gene_data(json_data):
                                             "publications": format_publication(
                                                 publications
                                             ),
-                                            "source": "UniProt",
+                                            "source": go_id,
                                         },
                                     }
                                 )
@@ -147,7 +148,7 @@ def extract_gene_data(json_data):
                                             "publications": format_publication(
                                                 publications
                                             ),
-                                            "source": "UniProt",
+                                            "source": go_id,
                                         },
                                     }
                                 )
